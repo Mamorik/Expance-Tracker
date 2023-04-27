@@ -1,0 +1,52 @@
+﻿@model Expense_Tracker.Models.Category
+
+@{
+    ViewData["Title"] = "Создать категорию";
+}
+
+<h1>Создать</h1>
+
+<h4>Категория</h4>
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+                <div class="mb-3">
+                    <div class='e-btn-group custom-rbt-group'>
+                        <input type="radio" id="radioleft" name="Type" value="Расходы" checked="@(Model.Type=="Расходы")" />
+                        <label class="e-btn" for="radioleft">Расходы</label>
+                        <input type="radio" id="radiomiddle" name="Type" value="Доходы" checked="@(Model.Type=="Доходы")" />
+                        <label class="e-btn" for="radiomiddle">Доходы</label>
+                    </div>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="title" placeholder="Название" ejs-for="@Model.Title" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="icon" placeholder="Иконка" ejs-for="@Model.Icon" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Icon" class="text-danger"></span>
+                </div>
+                @*<input type="submit" value="Delete" class="btn btn-danger" /> |*@
+                <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
+            </form>
+
+        </div>
+        
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-shapes fa-2xl" style="background-color:#212b36"></i>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

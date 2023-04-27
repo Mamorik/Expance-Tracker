@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Category>
+
+@{
+    ViewData["Title"] = "Категория";
+}
+
+<h1>Категории</h1>
+
+<p>
+    <a asp-action="AddOrEdit">Добавить категорию</a>
+</p>
+<div class="row">
+    <div class="col-md-7">
+        <ejs-grid id="categories" dataSource="@Model" gridLines="None" allowPaging="true" allowSorting="true" style="border-top-left-radius:5px; border-top-right-radius:5px; border-collapse:collapse">
+            <e-grid-pagesettings pageSize="2">
+            </e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Category" field="Title"></e-grid-column>
+                <e-grid-column headerText="Icon" field="Icon"></e-grid-column>
+                <e-grid-column headerText="Type" field="Type"></e-grid-column>
+                <e-grid-column headerText="Actions"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-shapes fa-2xl" style="background-color:#212b36"></i>
+        </div>
+    </div>
+</div>
