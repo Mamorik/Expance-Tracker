@@ -67,12 +67,27 @@ namespace Expense_Tracker.Controllers
                 return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
             }
             var category = await _context.Categories.FindAsync(id);
-            var transaction = _context.Transactions;
-            if (category != null)
+            var transaction = _context.Transactions.Where(c => c.CategoryId == id);
+            if (transaction == null)
             {
-                _context.Categories.Remove(category);
+                if (category != null)
+                {
+                    _context.Categories.Remove(category);
+                }
             }
-            
+            else
+            {
+                foreach (var remo in transaction)
+                {
+                    _context.Transactions.Remove(remo);
+                }
+                
+                if (category != null)
+                {
+                    _context.Categories.Remove(category);
+                }
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

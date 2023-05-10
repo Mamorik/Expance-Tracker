@@ -34,7 +34,7 @@ public class Transaction
     {
         get
         {
-            return ((Category == null || Category.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0");
+            return ((Category == null || Category.Type == "Расходы") ? "- " : "+ ") + Amount.ToString("C0");
         }
     }
 
